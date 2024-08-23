@@ -1,7 +1,7 @@
 'use client';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
+import { Pagination, Autoplay } from 'swiper/modules'; 
 import 'swiper/swiper-bundle.css';
 import WaveSVG from '../../../public/wave.svg';
 
@@ -12,12 +12,13 @@ export default function Banners({ homepageData }) {
         <div className="relative">
             {banners.length > 0 ? (
                 <Swiper
-                    modules={[Pagination]}
+                    modules={[Pagination, Autoplay]} 
                     spaceBetween={0}
                     slidesPerView={1}
                     loop={true}
                     pagination={{ clickable: true }}
-                    navigation={false} // Disable navigation arrows
+                    autoplay={{ delay: 5000, disableOnInteraction: false }} 
+                    navigation={false} 
                     className="my-swiper"
                 >
                     {banners.map((banner, index) => (
@@ -29,6 +30,7 @@ export default function Banners({ homepageData }) {
                                     loading="lazy"
                                     className="absolute inset-0 w-full h-full object-cover object-center"
                                 />
+                                <div className="absolute inset-0 bg-black bg-opacity-20"></div> 
                                 <div className='relative container h-[600px] max-sm:h-[400px] flex items-center mx-auto px-4 py-6'>
                                     <div className='text-left align-middle text-white'>
                                         <h2 className='text-5xl max-sm:text-2xl font-bold'>{banner.bannersTitle}</h2>
@@ -52,7 +54,6 @@ export default function Banners({ homepageData }) {
                 <p>No banners available.</p>
             )}
             <WaveSVG className="w-full absolute top-56 z-10 pointer-events-none max-sm:top-0" />
-            
         </div>
     );
 }

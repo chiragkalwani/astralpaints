@@ -1,10 +1,9 @@
-// components/AboutSection.js
 
 'use client'; // Ensure this is a client-side component if using Next.js 13+ App Router
 import Image from 'next/image';
 import React from 'react';
 import Aboutcolor from "../../../public/about-color.png";
-import { FaPlayCircle } from 'react-icons/fa'; // Import video icon from react-icons
+import { FaPlayCircle } from 'react-icons/fa'; 
 
 const AboutSection = ({ homepageData }) => {
   const {
@@ -33,8 +32,8 @@ const AboutSection = ({ homepageData }) => {
               <Image
                 src={Aboutcolor}
                 alt="About Color"
-                width={150} // Adjust width and height as needed
-                className="inline ml-3" // Ensure the image is inline with the text
+                width={150} 
+                className="inline ml-3" 
               />
             </h2>
             <div className="text-[#656565] mb-6 max-sm:mt-4 pe-10 dynamic-content" dangerouslySetInnerHTML={{ __html: homeAboutDescription }} />

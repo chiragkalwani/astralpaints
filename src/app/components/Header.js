@@ -48,6 +48,11 @@ export default function Header() {
               <li className="block lg:inline-block py-2 hover:text-gray-200 cursor-pointer max-sm:hidden">{item.name}</li>
             </Link>
           ))}
+         <Link href="/" onClick={closeDrawer}>
+         <li className="block lg:inline-block py-2 px-4 rounded-full hover:bg-transparent order hover:text-gray-200 border cursor-pointer max-sm:hidden bg-white text-[#0060AF] ">
+         Enquire Now
+            </li>
+         </Link>
         </nav>
       </div>
       <div
@@ -67,6 +72,11 @@ export default function Header() {
               <div className="text-lg hover:text-gray-300 cursor-pointer">{item.name}</div>
             </Link>
           ))}
+                  <Link href="/" onClick={closeDrawer}>
+         <li className="block py-2 px-4 rounded-full hover:bg-transparent order hover:text-gray-200 border  bg-white text-[#0060AF] ">
+         Enquire Now
+            </li>
+            </Link>
         </nav>
       </div>
     </header>
