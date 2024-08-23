@@ -1,33 +1,53 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
+@import "~@fontsource/poppins/index.css";
+@import "`@fontsource/poppins/bold.css"
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: 'Poppins', sans-serif; /* Apply Poppins font globally */
+}
+html {
+  scroll-behavior: smooth;
+}
+.dynamic-content p {
+  margin-bottom: 28px; /* Adjust the value as needed */
+
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.subtitle{
+  font-size: 1.125rem /* 18px */;
+    line-height: 1.75rem /* 28px */;
+    font-weight: 500;
+    margin-bottom: 0.5rem /* 8px */;
+    text-transform: capitalize;
+
+
+}
+.title{
+  font-size: 1.875rem /* 30px */;
+    line-height: 2.25rem /* 36px */;
+    font-weight: 700;
+    margin-bottom: 1rem /* 16px */;
+    text-transform: capitalize;
+
+}
+.swiper{
+  position:relative;  
+}
+
+.swiper-pagination {
+  transform: rotate(90deg);
+  z-index: 1000;
+  width: fit-content !important;
+  top: 0% !important;
+  position: absolute;
+  left: 78% !important;
+  display: block;
+
+}
+.swiper-pagination-bullet{
+  width: 40px;
+  height: 10px;
+  border-radius: 0;
 }
