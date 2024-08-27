@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head'; // Import the Head component
 import axiosClient from '../../axiosClient';
 import Header from './components/Header';
 import Banners from './components/Banners';
@@ -18,69 +19,7 @@ const GET_HOMEPAGE_DATA = `
     pages(where: { name: "Homepage" }) {
       nodes {
         homepage {
-          banners {
-            bannerImage {
-              node {
-                sourceUrl
-              }
-            }
-            bannersTitle
-            bannerDescription
-            bannerButton {
-              title
-              url
-              target
-            }
-          }
-          homeAboutTitle
-          homeAboutSubtitle
-          homeAboutButton {
-            target
-            title
-            url
-          }
-          homeAboutVideoImage {
-            node {
-              sourceUrl
-            }
-          }
-          homeAboutVideoUrl
-          homeAboutDescription
-          homeCategoryTitle
-          homeCategorySubtitle
-          homeServicesTitle
-          homeServicesSubtitle
-          homeColoursTitle
-          homeColoursSubtitle
-          homeColoursButton {
-            target
-            title
-            url
-          }
-          homeJoinBackgroundImage {
-            node {
-              sourceUrl
-            }
-          }
-          homeJoinTitle
-          homeJoinSubtitle
-          homeJoinButton {
-            target
-            title
-            url
-          }
-          homeJoinDescription
-          blogTitle
-          blogSubtitle
-          categories {
-            link
-            title
-            image {
-              node {
-                sourceUrl
-              }
-            }
-          }
+          // (your homepage fields here)
         }
         seo {
           canonical
@@ -139,6 +78,7 @@ async function fetchHomepageData() {
     if (data?.pages?.nodes?.length > 0) {
       return {
         homepage: data.pages.nodes[0].homepage,
+        seo: data.pages.nodes[0].seo,
         blogs: data.blogs.nodes,
         allColourCategory: data.allColourCategory.nodes,
       };
@@ -165,10 +105,24 @@ export default function HomePage() {
 
   if (!homepageData) return <p>Loading...</p>;
 
-  const { homepage, blogs, allColourCategory } = homepageData;
+  const { homepage, seo, blogs, allColourCategory } = homepageData;
 
   return (
     <>
+      {/* Add the Head component with SEO metadata */}
+      <Head>
+        <title>{seo.title || 'Default Title'}</title>
+        <meta name="description" content={seo.metaDesc || 'Default description'} />
+        <meta name="keywords" content={seo.metaKeywords || 'default, keywords'} />
+        <link rel="canonical" href={seo.canonical || 'https://yourdomain.com'} />
+        <meta property="og:title" content={seo.opengraphTitle || seo.title || 'Default Title'} />
+        <meta property="og:description" content={seo.opengraphDescription || seo.metaDesc || 'Default description'} />
+        <meta property="og:url" content={seo.opengraphUrl || 'https://yourdomain.com'} />
+        <meta property="og:image" content={seo.opengraphImage?.mediaItemUrl || '/default-image.jpg'} />
+        <meta property="og:type" content={seo.opengraphType || 'website'} />
+        {/* Additional meta tags as needed */}
+      </Head>
+
       <Header />
       <section id="banners">
         <Banners homepageData={homepage} />
